@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="100"
+   width="100"
+   id="svg106"
+   version="1.1"
+   viewBox="0 0 100 100"
+   sodipodi:docname="pause-icon.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="960"
+     inkscape:window-height="1007"
+     id="namedview843"
+     showgrid="false"
+     inkscape:zoom="5.3866683"
+     inkscape:cx="49.009886"
+     inkscape:cy="49.566816"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg106"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <metadata
+     id="metadata110">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Artboard 1 copy 5</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs87">
+    <style
+       id="style77">.cls-1{isolation:isolate;}.cls-2{fill:#fcfcfc;}.cls-3{mask:url(#mask);}.cls-4{opacity:0.25;mix-blend-mode:multiply;}.cls-5{fill:#333;}.cls-6{filter:url(#luminosity-invert);}</style>
+    <filter
+       style="color-interpolation-filters:sRGB"
+       filterUnits="userSpaceOnUse"
+       id="luminosity-invert">
+      <feColorMatrix
+         id="feColorMatrix79"
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0" />
+    </filter>
+    <mask
+       maskUnits="userSpaceOnUse"
+       height="32.64"
+       width="28.32"
+       y="8.76"
+       x="10.68"
+       id="mask">
+      <g
+         style="filter:url(#luminosity-invert)"
+         id="g84"
+         class="cls-6">
+        <image
+           id="image82"
+           xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADsAAABECAIAAACwM9rwAAAACXBIWXMAABcRAAAXEQHKJvM/AAAErElEQVRoQ+2aW2+yTBCAdznKQSABtSZa05p40f//b3qn0ZgCNpwWkNN3MZEgKkIb0rz5eK5anJl9drqLFx2EBgb+ffDto8ViMZ1OZVnmeZ5hGIqiMMYIoaIo8jxP0/R8Pvu+b5rmdru9TW/J29ubYRiyLLMsyzAMxhhjDEskSZIkied5lmXdLsHUfl+tVh8fH6+vr4ZhSJI0Go1YlqUoCiEEtUD3+/t7t9vxPP/5+Yk6Mp1Ol8vler2ez+eapomiyPM8TdMIoaIokiSJ4zgIgtPpdDwedV3fbre2bZfpdePlcrnZbNbr9Ww20zRNEISqcZqmYRi6rmuapizLCKE4jrt2ejKZbDabzWazWCwMw1AUBYwxxtAUQojneaZpappG03QYhg+N1+v1er1erVbv7+9lA+BgoEsDwHg8HiOEfN8/HA5djRVFeXl5WS6Xb29v0+m0ZpymKSHEcRxJkjDGnufV6l8ZTyaT2Ww2vzAej0ejEdRCl3N8Pp9FUUQI+b6v6zp0uhOCIGiaZhjGdDqdzWayLHMcB7elKIosy6IoEgQBIRQEgaqq8HPJlbEkSaqqapqmadp4PK7ZYIxpmob8MAxVVYXbiTrCsqwoioqiqKoKTSk/whgzDCNJEkKIEDIej0VR5Diumk7Vao1GI0mSBEGoFqrBcZwoihDDMPWb8BSGYXieH41GPM/XbACMMc/zgiAIgsBxHFzKkitjmqa5C7W4WhjLsvBWgiPeCYqiaJpmGKYhvVyCZdkmY6hF03T5Dn4ERVEMw5RHvBMYY1ioYbcNJlc5bWpVI+G13xx5C+Q+bQoUf27cUgJXeBb7kDbGt8/v97KlR8uwW1pu9W5T6sYta6Ff6P6Szjf9z/nfGP/VkUA/Nv5DBuP+GYz7ZzDun8G4fwbj/hmM+2cw7p/BuH8G4/4ZjPtnMO6fwbh/BuP+GYz754fGRVE8C+mLHxr/IXXjoiha9q9l2G8oLlQf3u9xS5uWYbe06cujmCvju3t6BIS1DK5SVGgTVnteN87zPMuyPM9RI1DradgjnhqX9fM8r4VdGYNumqZZljU3AMKgYkPYXSAL0htiQOM2rG6cXMiyDD0AyiVJ0rzqIyAdeLQK1AeNJuM0TeM4DsOQEBJF0aM2x3EcRVEURXEcN2zsEVmWQQVCyPl8vhsQhmEQBISQ2yWupiPO53MQBI7jOI4jCEJRFLUZlizLYLLJcRzP8wghSZKgjpSjO57nCYKQ53k5wwLHEj51Xdf3/dtdXRl7nmfbtmmakiTleQ6TTeUUBJSLogjmuizLchyHEII6Eoah4ziWZcmynOe5LMvQF3Q5MIQQ13W/vr5s23ZdN4qiavqVsWVZx+NR0zSMcRAEsiyXxvgydgQ9Pp1Oh8PBNM0gCFBHgiAwTVNVVYSQ67owJ1SdxYqiyPd927YPh4Nt27Ulroy3262u6zRNu66rKIokSRzHlcZZlsHlDcMQprv2+71lWagjlmXtdrs8z0+nk6IoMFJXzrtBU+Bg2La92+1Op1M1vf7PWl3XJ5OJoijljE51phCOMkgTQizL2u/3qDvz+RwmAOFvWM6glF8I0GmY0zscDs/qDQwM9M1/KQY+XtbxSCcAAAAASUVORK5CYII="
+           transform="matrix(0.48,0,0,0.48,10.68,8.76)"
+           height="68"
+           width="59" />
+      </g>
+    </mask>
+  </defs>
+  <title
+     id="title89">Artboard 1 copy 5</title>
+  <g
+     transform="matrix(1.610511,0,0,1.610511,9.890732,9.420492)"
+     style="isolation:isolate;fill:none;stroke:#000000;stroke-opacity:1"
+     id="g104"
+     class="cls-1">
+    <rect
+       class="cls-2"
+       x="13"
+       y="11"
+       width="8"
+       height="28"
+       rx="1.58"
+       ry="1.58"
+       id="rect91"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+    <rect
+       class="cls-2"
+       x="29"
+       y="11"
+       width="8"
+       height="28"
+       rx="1.58"
+       ry="1.58"
+       id="rect93"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+    <g
+       class="cls-3"
+       mask="url(#mask)"
+       id="g101"
+       style="fill:none;stroke:#000000;stroke-opacity:1" />
+  </g>
+</svg>

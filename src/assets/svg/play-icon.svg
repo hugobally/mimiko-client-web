@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 100 99.999999"
+   version="1.1"
+   id="svg4027"
+   sodipodi:docname="play-icon.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   width="100"
+   height="100"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata
+     id="metadata4031">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Artboard 1 copy 4</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1007"
+     id="namedview4029"
+     showgrid="false"
+     showguides="false"
+     inkscape:zoom="4.9798888"
+     inkscape:cx="1.5060577"
+     inkscape:cy="60.643924"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1"
+     inkscape:showpageshadow="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <defs
+     id="defs4012">
+    <style
+       id="style4002">.cls-1{isolation:isolate;}.cls-2{fill:#fcfcfc;}.cls-3{mask:url(#mask);}.cls-4{opacity:0.25;mix-blend-mode:multiply;}.cls-5{fill:#333;}.cls-6{filter:url(#luminosity-invert);}</style>
+    <filter
+       id="luminosity-invert"
+       filterUnits="userSpaceOnUse"
+       style="color-interpolation-filters:sRGB">
+      <feColorMatrix
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"
+         id="feColorMatrix4004" />
+    </filter>
+    <mask
+       id="mask"
+       x="12"
+       y="6.84"
+       width="29.28"
+       height="36.48"
+       maskUnits="userSpaceOnUse">
+      <g
+         class="cls-6"
+         id="g4009"
+         style="filter:url(#luminosity-invert)">
+        <image
+           width="61"
+           height="76"
+           transform="matrix(0.48,0,0,0.48,12,6.84)"
+           xlink:href="data:image/png;base64,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"
+           id="image4007" />
+      </g>
+    </mask>
+  </defs>
+  <title
+     id="title4014">Artboard 1 copy 4</title>
+  <g
+     class="cls-1"
+     id="g4025"
+     transform="matrix(0.97289273,0,0,0.97289273,-0.06891624,-0.02328737)"
+     style="isolation:isolate">
+    <g
+       id="Layer_1"
+       data-name="Layer 1"
+       style="fill:#1a1a1a;fill-opacity:1"
+       transform="matrix(2,0,0,2,12.676319,1.4125806)">
+      <path
+         class="cls-2"
+         d="m 11.042597,14.455358 -0.03829,20.200521 a 1.817615,1.6280694 1.1886432 0 0 2.842985,1.371538 l 16.648315,-9.984685 a 1.8258395,1.6354362 1.1886434 0 0 0.0051,-2.711084 L 13.898928,13.123225 a 1.8258395,1.6354362 1.1886434 0 0 -2.856331,1.332133 z"
+         id="path4016"
+         inkscape:connector-curvature="0"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.34367;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>
