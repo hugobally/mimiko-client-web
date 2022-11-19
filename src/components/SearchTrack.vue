@@ -1,18 +1,18 @@
 <template>
-      <div class="search-input-container">
-        <SearchInput
-            class="search-input"
-            @submit="findTrack"
-            placeholder="Type the name of a song or artist"
-            :valueProp="findLastValue || null"
-            :submitWord="!busy ? 'Start' : 'Working...'"
-            :label="label"
-            :busy="busy"
-            :valid="flagship || !findRetry"
-            :autocompleteFunction="autocomplete"
-        />
-      </div>
-      <!-- <GenreGrid class="genre-grid-layout" /> -->
+  <div class="search-input-container">
+    <SearchInput
+      class="search-input"
+      @submit="findTrack"
+      placeholder="Type the name of a song or artist"
+      :valueProp="findLastValue || null"
+      :submitWord="!busy ? 'Start' : 'Working...'"
+      :label="label"
+      :busy="busy"
+      :valid="flagship || !findRetry"
+      :autocompleteFunction="autocomplete"
+    />
+  </div>
+  <!-- <GenreGrid class="genre-grid-layout" /> -->
 </template>
 
 <script>
@@ -65,7 +65,9 @@ export default {
         const tracks = await searchForTrack(value)
 
         if (tracks) this.flagship = tracks[0]
-        this.title = replaceSpecial(`${this.flagship.artist} - ${this.flagship.title}`)
+        this.title = replaceSpecial(
+          `${this.flagship.artist} - ${this.flagship.title}`,
+        )
         await this.createMap(this.title)
       } catch (error) {
         // TODO
@@ -79,7 +81,7 @@ export default {
         const map = await gqlCreateMap({
           title: title,
           public: this.isPublic,
-          flagshipId: this.flagship.id,
+          flagshipID: this.flagship.id,
         })
         map.flagship = this.flagship
         this.$store.commit('maplist/USER_MAPS_PUSH', map)
@@ -119,6 +121,4 @@ function replaceSpecial(str) {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

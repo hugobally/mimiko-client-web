@@ -130,7 +130,7 @@ export default {
     },
     LIKED_PLAYLIST_REMOVE(state, id) {
       state.likedPlaylist.tracks = state.likedPlaylist.tracks.filter(
-        track => track != id,
+        (track) => track != id,
       )
     },
 
@@ -163,12 +163,12 @@ export default {
 
       document.body.appendChild(spotifyPlaybackSDK)
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         window.onSpotifyWebPlaybackSDKReady = () => {
           // eslint-disable-next-line no-undef
           const player = new Spotify.Player({
             name: 'Mimiko',
-            getOAuthToken: async callback => {
+            getOAuthToken: async (callback) => {
               try {
                 const token = await getToken()
                 callback(token.access)
@@ -178,7 +178,7 @@ export default {
             },
           })
 
-          player.addListener('player_state_changed', playerState => {
+          player.addListener('player_state_changed', (playerState) => {
             if (!playerState) {
               // TODO Resetting player is buggy
               // commit('RESET_PLAYER')
@@ -352,14 +352,13 @@ export default {
           try {
             const seeds = [knots[current].track.id]
             const existingTracks = Object.values(knots).map(
-              knot => knot.track.id,
+              (knot) => knot.track.id,
             )
-            const recos = await recoFromTrack(
+            const recos = await recoFromTrack({
               seeds,
-              5,
-              existingTracks,
-              state.previewMode,
-            )
+              blacklist: existingTracks,
+              previewMode: state.previewMode,
+            })
             newTrack = recos[0]
           } catch (error) {
             // TODO
@@ -402,10 +401,10 @@ export default {
         const parentId = current.attachTo
         const params = {
           sourceId: parentId,
-          newTracks: [current.track],
+          track: current.track,
         }
 
-        await dispatch('map/createKnots', params, { root: true })
+        await dispatch('map/createKnot', params, { root: true })
 
         // TODO Convoluted
         const knots = rootState.map.knots
@@ -423,7 +422,7 @@ export default {
       commit('SET_TRACK', current.track)
       commit('SET_PLAYED_KNOT_ID', current.knot)
 
-      await new Promise(r => setTimeout(r, 100))
+      await new Promise((r) => setTimeout(r, 100))
 
       // TODO Only for spotify login
       // try {

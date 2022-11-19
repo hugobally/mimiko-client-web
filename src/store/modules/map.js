@@ -2,7 +2,7 @@ import * as gql from '@/api/graphql'
 import * as spotify from '@/api/spotify'
 
 import processMap from '@/store/modules/map/processMap'
-import createKnots from '@/store/modules/map/createKnots'
+import createKnot from '@/store/modules/map/createKnot'
 import deleteKnots from '@/store/modules/map/deleteKnots'
 import mutations from '@/store/modules/map/mutations'
 import { debounce } from '@/helpers'
@@ -49,7 +49,7 @@ export default {
     //TODO ? Bundle multiple related function inside wrapper objects in one dep file ?
     ...{
       processMap,
-      createKnots,
+      createKnot,
       deleteKnots,
     },
     ...{
@@ -60,34 +60,10 @@ export default {
         let rawMap = await gql.map(id)
 
         if (templateId && rawMap.knots.length === 1) {
-          const templateMap = await gql.map(templateId)
-
-          // TODO Gross -- refactor when the backend is fixed
-          const knots = (
-            await Promise.all(
-              templateMap.knots.map(knot =>
-                gql.createKnots(id, [knot.trackId], knot.level, false),
-              ),
-            )
-          ).map(({ knots }) => knots[0])
-          const linksToCreate = templateMap.links.map(({ source, target }) => ({
-            source: knots.find(
-              ({ trackId }) =>
-                trackId ===
-                templateMap.knots.find(({ id }) => id === source).trackId,
-            ).id,
-            target: knots.find(
-              ({ trackId }) =>
-                trackId ===
-                templateMap.knots.find(({ id }) => id === target).trackId,
-            ).id,
-          }))
-          await Promise.all(
-            linksToCreate.map(({ source, target }) =>
-              gql.createLinks(id, source, [target]),
-            ),
-          )
-          rawMap = await gql.map(id)
+          rawMap = null
+          throw new Error('not implemented')
+          // const templateMap = await gql.map(templateId)
+          // rawMap = await gql.map(<created map id>)
         }
 
         commit('MAP_SET_ID', id)

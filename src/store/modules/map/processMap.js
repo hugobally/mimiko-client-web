@@ -1,39 +1,46 @@
-export default function({ dispatch, state }, map) {
+export default function ({ dispatch, state }, map) {
   let level = 0
-  let current = map.knots.filter(knot => knot.level === level)
+  let current = map.knots.filter((knot) => knot.level === level)
 
   while (current.length > 0) {
     // Set parent and children for current level
-    current = current.map(knot => {
-      const lk = map.links.find(link => link.target === knot.id)
-      knot.parent = lk ? lk.source : null
+    current = current.map((knot) => {
+      const link = map.links.find((link) => link.targetID === knot.id)
+      knot.parent = link ? link.sourceID : null
       knot.children = []
       for (const link of map.links) {
-        if (link.source === knot.id) knot.children.push(link.target)
+        if (link.sourceID === knot.id) knot.children.push(link.targetID)
       }
 
       return knot
     })
 
     // Deploy the level
-    const newLinks = map.links.filter(link =>
-      current.find(knot => knot.id === link.target),
+    const newLinks = map.links.filter((link) =>
+      current.find((knot) => knot.id === link.targetID),
     )
 
     dispatch('addKnots', current)
-    dispatch('addLinks', newLinks)
+
+    // TODO rename source/target to sourceID/targetID everywhere
+    dispatch(
+      'addLinks',
+      newLinks.map(({ id, sourceID, targetID }) => ({
+        id,
+        source: sourceID,
+        target: targetID,
+      })),
+    )
 
     // Setup next level
     level += 1
 
-    const next = map.knots.filter(knot => knot.level === level)
+    const next = map.knots.filter((knot) => knot.level === level)
     const slots = []
 
     // Setup possible slots for the next level
     const radius = level * 300
     const items = level === 1 ? next.length : 256
-    // let items = next.length * 2 * Math.max(1, Math.round(level / 2))
-    // if (items < 16) items = 16
 
     for (let i = 0; i < items; i++) {
       slots.push({
@@ -45,7 +52,7 @@ export default function({ dispatch, state }, map) {
     // Push and position children for each parent
     for (const parent of current) {
       for (const childId of parent.children) {
-        const childKnot = next.find(knot => knot.id === childId)
+        const childKnot = next.find((knot) => knot.id === childId)
 
         const parentX = state.knots[parent.id].x
         const parentY = state.knots[parent.id].y

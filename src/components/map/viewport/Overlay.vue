@@ -199,23 +199,20 @@ export default {
     // TODO Factorize w/ Player.vue
     async add() {
       if (!this.readOnly) {
-        const newKnots = await this.$store.dispatch('map/createKnots', {
+        const newKnot = await this.$store.dispatch('map/createKnot', {
           sourceId: this.hovered,
-          number: 5,
           visited: false,
         })
         if (this.status !== 'PLAYING') {
           await this.$store.dispatch('player/playKnot', {
-            knot: newKnots[0].id,
-            track: newKnots[0].track,
+            knot: newKnot.id,
+            track: newKnot.track,
           })
         } else {
-          newKnots.forEach(knot =>
-            this.$store.commit('player/PLAYQUEUE_SHIFT', {
-              track: knot.track,
-              knot: knot.id,
-            }),
-          )
+          this.$store.commit('player/PLAYQUEUE_SHIFT', {
+            track: newKnot.track,
+            knot: newKnot.id,
+          })
         }
       }
     },

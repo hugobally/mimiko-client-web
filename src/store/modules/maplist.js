@@ -22,10 +22,10 @@ export default {
       state.userMaps.push(map)
     },
     USER_MAPS_REMOVE(state, id) {
-      state.userMaps = state.userMaps.filter(map => map.id !== id)
+      state.userMaps = state.userMaps.filter((map) => map.id !== id)
     },
     USER_MAPS_UPDATE(state, { id, newVal }) {
-      let map = state.userMaps.find(map => map.id === id)
+      let map = state.userMaps.find((map) => map.id === id)
 
       if (map) {
         map = newVal
@@ -44,71 +44,48 @@ export default {
     },
   },
   getters: {
-    userMaps: state => {
+    userMaps: (state) => {
       return state.userMaps?.reverse()
     },
-    publicMaps: state => {
+    publicMaps: (state) => {
       return state.publicMaps
     },
   },
   actions: {
     async fetchAllUserMaps({ state, rootState, commit }) {
-      if (state.userMapsLock) return
-
-      commit('SET_USER_MAPS_LOCK', true)
       try {
-        if (state.userMaps?.length > 0) return
-
         const user = rootState.auth.user
-        if (!user.logged) return
+        if (!user) return
 
-        await fetchMaps(commit, 'USER_MAPS_CONCAT', { userId: user.id })
+        commit('USER_MAPS_CONCAT', await fetchMaps({ author: user.id }))
       } finally {
         if (!state.userMaps) {
           commit('USER_MAPS_CONCAT', [])
         }
-        commit('SET_USER_MAPS_LOCK', false)
       }
     },
     async fetchAllPublicMaps({ state, commit }) {
-      if (state.publicMapsLock) return
-
-      commit('SET_PUBLIC_MAPS_LOCK', true)
-      try {
-        if (state.publicMaps.length > 0) return
-
-        await fetchMaps(commit, 'PUBLIC_MAPS_CONCAT', {})
-      } finally {
-        commit('SET_PUBLIC_MAPS_LOCK', false)
-      }
+      commit('PUBLIC_MAPS_CONCAT', await fetchMaps())
     },
   },
 }
 
-async function fetchMaps(commit, mutation, filter) {
-  filter = { ...filter, ...{ offset: 0, limit: 50 } }
+async function fetchMaps(filter) {
+  const maps = await gql.maps(filter)
+  if (!maps.length) return []
 
-  // TODO Convoluted
-  let resultLength = 1
-  while (resultLength > 0) {
-    const maps = await gql.maps(filter)
+  const tracks = await spotifyGetTracks(
+    maps
+      .reduce((acc, map) => {
+        if (map.flagshipID) acc.push(map.flagshipID)
+        return acc
+      }, [])
+      .join(),
+  )
 
-    resultLength = maps.length
-    if (resultLength === 0) return
-
-    const tracks = await spotifyGetTracks(
-      maps
-        .reduce((acc, map) => {
-          if (map.flagshipId) acc.push(map.flagshipId)
-          return acc
-        }, [])
-        .join(),
-    )
-    for (const map of maps) {
-      map.flagship = tracks.find(track => track.id === map.flagshipId)
-    }
-    commit(mutation, maps)
-
-    filter.offset += filter.limit
+  for (const map of maps) {
+    map.flagship = tracks.find((track) => track.id === map.flagshipID)
   }
+
+  return maps
 }

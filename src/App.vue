@@ -46,7 +46,7 @@ export default {
     logged() {
       if (!this.$store.auth) return false
 
-      return this.$store.auth.user.logged
+      return this.$store.auth.user
     },
   },
   watch: {

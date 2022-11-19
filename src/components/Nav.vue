@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     logged() {
-      return this.$store.state.auth.user.logged
+      return this.$store.state.auth.user
     },
   },
 }

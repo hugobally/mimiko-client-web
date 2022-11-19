@@ -21,23 +21,23 @@
       <!--          alt="no-liked-icon"-->
       <!--        />-->
       <!--      </div>-->
-      <div
-        class="add-button-wrapper"
-        :class="{
-          'add-button-tutorial':
-            $route.path.includes('map') &&
-            tutorialSteps.includes('add_knot') &&
-            !tutorialSteps.includes('select_knot') &&
-            selectedKnotId,
-        }"
-        @click="add"
-      >
-        <img
-          class="add-button"
-          src="@/assets/svg/add-icon.svg"
-          alt="add-track-icon"
-        />
-      </div>
+<!--      <div-->
+<!--        class="add-button-wrapper"-->
+<!--        :class="{-->
+<!--          'add-button-tutorial':-->
+<!--            $route.path.includes('map') &&-->
+<!--            tutorialSteps.includes('add_knot') &&-->
+<!--            !tutorialSteps.includes('select_knot') &&-->
+<!--            selectedKnotId,-->
+<!--        }"-->
+<!--        @click="add"-->
+<!--      >-->
+<!--        <img-->
+<!--          class="add-button"-->
+<!--          src="@/assets/svg/add-icon.svg"-->
+<!--          alt="add-track-icon"-->
+<!--        />-->
+<!--      </div>-->
       <div class="button-wrapper" @click="dislike">
         <img
           class="dislike-button"
@@ -173,7 +173,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('map', ['createKnots']),
+    ...mapActions('map', ['createKnot']),
     hardWrapText(text) {
       const maxLength = 40
       if (text && text.length > maxLength) {
@@ -274,9 +274,8 @@ export default {
       // with a click, lock further queries until promise.all is done
       // TODO Factorize with Overlay.vue
       if (!this.readOnly) {
-        const newKnots = await this.createKnots({
+        const newKnots = await this.createKnot({
           sourceId: this.selectedKnotId,
-          number: 5,
           visited: false,
         })
         newKnots.forEach(knot =>

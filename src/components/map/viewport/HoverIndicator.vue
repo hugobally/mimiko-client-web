@@ -9,7 +9,7 @@
       :stroke="$store.state.map.meta.color"
       stroke-width="8"
       fill-opacity="0"
-      :r="radius / 1.8"
+      :r="radius / 2.2"
       @mouseover="onMouseOver()"
       @mouseleave="onMouseLeave()"
     />

@@ -2,30 +2,30 @@
   <g :opacity="highlighted ? 1 : 0.2">
     <transition name="link-path">
       <path
-          v-if="path.steps && path.steps.length > 0"
-          :key="path.steps.length"
-          :d="buildPath()"
-          :style="style"
+        v-if="path.steps && path.steps.length > 0"
+        :key="path.steps.length"
+        :d="buildPath()"
+        :style="style"
       />
     </transition>
     <path
-        v-if="path.unvisitedSteps && path.unvisitedSteps.length > 0"
-        :d="buildPathUnvisited()"
-        :style="style"
-        stroke-dasharray="6"
+      v-if="path.unvisitedSteps && path.unvisitedSteps.length > 0"
+      :d="buildPathUnvisited()"
+      :style="style"
+      stroke-dasharray="6"
     />
   </g>
 </template>
 
 <script>
-import {line as d3Line, curveNatural} from 'd3-shape'
-import {mapState} from 'vuex'
+import { line as d3Line, curveNatural } from 'd3-shape'
+import { mapState } from 'vuex'
 
 export default {
   props: ['link', 'id'],
   data() {
     return {
-      path: {steps: [], unvisitedSteps: []},
+      path: { steps: [], unvisitedSteps: [] },
     }
   },
   mounted() {
@@ -35,14 +35,14 @@ export default {
     ...mapState('map', ['knots', 'links', 'focused']),
     lineGenerator() {
       return d3Line()
-          .curve(curveNatural)
-          .x(id => this.knots[id].x)
-          .y(id => this.knots[id].y)
+        .curve(curveNatural)
+        .x((id) => this.knots[id].x)
+        .y((id) => this.knots[id].y)
     },
     style() {
       return {
         stroke: this.highlighted ? '#797979' : '#111111',
-        strokeWidth: 4,
+        strokeWidth: 1,
       }
     },
     dashed() {
@@ -51,11 +51,13 @@ export default {
       }
     },
     highlighted() {
-      const knot = this.$store.state.ui.selectedKnotId || this.$store.state.player.playedKnotId
+      const knot =
+        this.$store.state.ui.selectedKnotId ||
+        this.$store.state.player.playedKnotId
 
       const onVisited = this.path.steps && this.path.steps.includes(knot)
       const onUnvisited =
-          this.path.unvisitedSteps && this.path.unvisitedSteps.includes(knot)
+        this.path.unvisitedSteps && this.path.unvisitedSteps.includes(knot)
 
       return knot && (onVisited || onUnvisited)
     },
@@ -97,13 +99,13 @@ export default {
         steps: steps.reverse(),
         unvisitedSteps: unvisitedSteps ? unvisitedSteps.reverse() : null,
       }
-    }
+    },
   },
   watch: {
     knots: function () {
       this.generatePath()
     },
-  }
+  },
 }
 </script>
 

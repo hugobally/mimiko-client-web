@@ -38,7 +38,7 @@ export async function autocomplete(searchString) {
     const results = data.tracks.items
     if (results.length < 1) return null
 
-    return results.map(track => {
+    return results.map((track) => {
       return `${artistNamesToString(track.artists)} - ${track.name}`
     })
   } catch (error) {
@@ -47,20 +47,15 @@ export async function autocomplete(searchString) {
   }
 }
 
-export async function recoFromTrack(
-  seeds,
-  number,
-  blacklist = [],
-  previewMode,
-) {
+export async function recoFromTrack({ seeds, numResults = 5, blacklist = [], previewMode}) {
   const params = {
-    limit: Math.max(number, 10),
+    limit: Math.max(numResults, 5),
     seed_tracks: seeds.join(),
     // market: 'from_token',
   }
   const data = await performGetRequest('recommendations', params)
 
-  const tracks = data.tracks.filter(track => {
+  const tracks = data.tracks.filter((track) => {
     if (blacklist.includes(track.id)) {
       return false
     }
@@ -71,7 +66,7 @@ export async function recoFromTrack(
   })
 
   if (tracks.length < 1) return null
-  return parseTracks([tracks[0]])
+  return parseTracks(tracks)
 }
 
 export async function getActiveDevice(localDeviceId) {
@@ -79,7 +74,7 @@ export async function getActiveDevice(localDeviceId) {
   if (data.devices.length < 1) return null
 
   const activeDevice = data.devices.find(
-    device => device.is_active === true && device.id !== localDeviceId,
+    (device) => device.is_active === true && device.id !== localDeviceId,
   )
   if (!activeDevice) return null
 
@@ -88,7 +83,7 @@ export async function getActiveDevice(localDeviceId) {
 
 export async function playTrack(tracks, localDeviceId) {
   const data = {
-    uris: tracks.map(id => `spotify:track:${id}`),
+    uris: tracks.map((id) => `spotify:track:${id}`),
   }
   //TODO Optimize ? (avoid 2 requests on each play)
   const activeDeviceId = await getActiveDevice(localDeviceId)
@@ -111,7 +106,7 @@ export async function findPlaylist() {
   while (!playlist && total > params.offset + params.limit) {
     const data = await performGetRequest('me/playlists', params)
     playlist = data.items.find(
-      playlist => playlist.name === LIKED_PLAYLIST_NAME,
+      (playlist) => playlist.name === LIKED_PLAYLIST_NAME,
     )
 
     total = data.total
@@ -151,7 +146,7 @@ export async function getPlaylistTracks(playlistId) {
       `playlists/${playlistId}/tracks`,
       params,
     )
-    for (const trackId of data.items.map(item => item.track.id)) {
+    for (const trackId of data.items.map((item) => item.track.id)) {
       tracks.push(trackId)
     }
     params.offset += params.limit
@@ -202,25 +197,13 @@ async function performPostRequest(endpoint, data, method = 'POST') {
 }
 
 export async function getToken() {
-  let retries = 0
-  let token = null
-
-  while (!token && retries < 10) {
-    await store.dispatch('auth/refreshToken').catch(() => {})
-    token = store.getters['auth/token']('spotify')
-
-    if (!token) {
-      retries++
-      await new Promise(r => setTimeout(r, 1000))
-    }
-  }
-
-  return token
+  await store.dispatch('auth/refreshSpotifyToken')
+  return store.state.auth.spotifyToken
 }
 
 // TODO There are 3 image sizes returned -> Optimize?
 function parseTracks(tracks) {
-  return tracks.map(track => {
+  return tracks.map((track) => {
     return {
       id: track.id,
       title: track.name,

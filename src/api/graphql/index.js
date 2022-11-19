@@ -19,11 +19,10 @@ async function perform(queryStr, variables = {}) {
 
 // Queries
 
-function parseToken(linkedApp) {
+function parseToken(token) {
   return {
-    access: linkedApp.accessToken,
-    expiry: new Date(linkedApp.tokenExpiry),
-    userId: linkedApp.userId,
+    access: token.accessToken,
+    expiry: new Date(token.tokenExpiry),
   }
 }
 
@@ -33,11 +32,6 @@ export async function me() {
       me {
         id
         username
-        linkedApps(type: SPOTIFY) {
-          accessToken
-          tokenExpiry
-          userId
-        }
       }
     }
   `)
@@ -46,8 +40,20 @@ export async function me() {
   return {
     id: data.id,
     username: data.username,
-    token: parseToken(data.linkedApps[0]),
   }
+}
+
+export async function getSpotifyToken() {
+  const r = await perform(`
+    query {
+      getSpotifyToken {
+        accessToken
+        tokenExpiry
+      }
+    }
+  `)
+  if (r.errors) throw new Error('fetch spotify token: failed')
+  return parseToken(r.data.getSpotifyToken)
 }
 
 export async function map(id) {
@@ -70,8 +76,8 @@ export async function map(id) {
         }
         links {
           id
-          source
-          target
+          sourceID
+          targetID
         }
       }
     }
@@ -91,10 +97,7 @@ export async function maps(filter = {}) {
       maps(filter: $filter) {
         id
         title
-        flagshipId
-        author {
-          username
-        }
+        flagshipID
         public
       }
     }
@@ -126,20 +129,6 @@ export async function updateUsername(newUsername) {
   return r.data.updateUsername
 }
 
-export async function getToken() {
-  const r = await perform(`
-    mutation {
-      getToken(app: SPOTIFY) {
-        accessToken
-        tokenExpiry
-        userId
-      }
-    }
-  `)
-  if (r.errors) throw new Error('fetch access token: failed')
-  return parseToken(r.data.getToken)
-}
-
 export async function createMap(mapInput) {
   if (!mapInput) throw new Error('missing parameters')
 
@@ -149,7 +138,7 @@ export async function createMap(mapInput) {
       createMap(mapInput: $mapInput) {
         id
         title
-        flagshipId
+        flagshipID
         author {
           id
         }
@@ -173,7 +162,7 @@ export async function updateMap(mapId, mapInput) {
       mutation($mapId: ID!, $mapInput: MapInput!) {
         updateMap(mapId: $mapId, mapInput: $mapInput) {
           title
-          flagshipId
+          flagshipID
           public
         }
       }
@@ -205,27 +194,30 @@ export async function deleteMap(mapId) {
   if (r.errors || !r.data.deleteMap.success) throw new Error(ERROR_MSG)
 }
 
-export async function createKnots(mapId, trackIds, level, visited) {
+export async function createKnot({ mapId, sourceId, trackId, level, visited }) {
   const r = await perform(
     `
-      mutation($mapId: ID!, $newKnots: [KnotInput!]!) {
-        createKnots(mapId: $mapId, newKnots: $newKnots) {
+      mutation($mapId: ID!, $knotInput: KnotInput!) {
+        createKnot(mapId: $mapId, knotInput: $knotInput) {
           id
           trackId
           level
           visited
+          parentLinks {
+            id
+            sourceID
+            targetID
+          }
         }
       }
     `,
     {
       mapId: mapId,
-      newKnots: trackIds.reduce((acc, id) => {
-        acc.push({ trackId: id, level: level, visited: visited })
-        return acc
-      }, []),
+      knotInput: { sourceId, trackId, level, visited },
     },
   )
-  return { errors: 'errors' in r === true, knots: r.data.createKnots }
+  if (r.errors) throw new Error(ERROR_MSG)
+  return r.data.createKnot
 }
 
 export async function updateKnot(knotId, knotInput) {
@@ -265,27 +257,6 @@ export async function deleteKnots(mapId, knotIds) {
   )
   if (r.errors) throw new Error(ERROR_MSG)
   return r.data.deleteKnots.count
-}
-
-export async function createLinks(mapId, sourceId, targetIds) {
-  const r = await perform(
-    `
-    mutation($mapId: ID!, $sourceId: String!, $targetIds: [String!]!) {
-      createLinks(mapId: $mapId, sourceId: $sourceId, targetIds: $targetIds)
-      {
-          id
-          source
-          target
-      }
-    }
-  `,
-    {
-      mapId: mapId,
-      sourceId: sourceId,
-      targetIds: targetIds,
-    },
-  )
-  return { errors: 'errors' in r === true, links: r.data.createLinks }
 }
 
 export async function deleteLinks(mapId, linkIds) {

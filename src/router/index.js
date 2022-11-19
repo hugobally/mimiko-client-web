@@ -20,33 +20,10 @@ const routes = [
     component: () => import(/* webpackChunkName: "map" */ '@/views/Map'),
   },
   {
-    path: '/callback/spotify',
+    path: '/login',
     beforeEnter: async (to, from, next) => {
-      const pathBeforeLogin = localStorage.getItem('path_before_login')
-
-      const code = to.query.code
       try {
-        await axios.post(process.env.VUE_APP_BACKEND_URL + '/login_spotify', code, {
-          withCredentials: true,
-        })
-        await store.dispatch('auth/whoami')
-      } catch (error) {
-        store.dispatch('ui/pushFlashQueue', {
-          content: 'Login failed',
-          type: 'error',
-        })
-      }
-
-      next(pathBeforeLogin || '/')
-    },
-  },
-  {
-    path: '/login_sample_session',
-    beforeEnter: async (to, from, next) => {
-      const pathBeforeLogin = localStorage.getItem('path_before_login')
-
-      try {
-        await axios.post(process.env.VUE_APP_BACKEND_URL + '/login_sample_session', crypto.randomUUID(), {
+        await axios.post(process.env.VUE_APP_BACKEND_URL + '/login', '', {
           withCredentials: true,
         })
         await store.dispatch('auth/whoami')
@@ -55,11 +32,15 @@ const routes = [
           content: 'Login failed',
           type: 'error',
         })
+        console.log(error)
+      } finally {
+        next('/')
       }
-
-      next(pathBeforeLogin || '/')
-    }
+    },
   },
+  // {
+  //   path: '/callback/spotify', --> use to.query.code to get the auth code
+  // },
   {
     path: '*',
     name: 'catchall',
@@ -73,27 +54,20 @@ const router = new VueRouter({
   routes,
 })
 
+const LOGIN_PATHS = ['login', 'callback']
+
 router.beforeEach(async (to, from, next) => {
-  if (to.path.includes('callback') || to.path.includes('login_sample_session')) {
+  if (LOGIN_PATHS.some((path) => to.path.includes(path))) {
     next()
   } else {
-    if (
-        store.state.auth.user.logged === false &&
-        !store.state.auth.relogAttempted
-    ) {
-      try {
-        await store.dispatch('auth/whoami')
-      } catch (error) {
-        // TODO
+    if (!store.state.auth.user) {
+      await store.dispatch('auth/whoami')
+      if (!store.state.auth.user) {
+        return next('/login')
       }
     }
 
-    if (!store.state.auth.user.logged && to.path !== '/welcome') {
-      localStorage.setItem('path_before_login', to.path)
-      next('/login_sample_session')
-    } else {
-      next()
-    }
+    next()
   }
 })
 

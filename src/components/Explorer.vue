@@ -63,7 +63,7 @@ export default {
       try {
         const map = await gqlCreateMap({
           title: mapTemplate.title,
-          flagshipId: mapTemplate.flagship.id,
+          flagshipID: mapTemplate.flagship.id,
           public: false,
         })
         map.flagship = mapTemplate.flagship

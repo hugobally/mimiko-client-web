@@ -1,10 +1,14 @@
 <template>
-  <g class="select-indicator-container" :transform="transformStr">
+  <g
+    class="select-indicator-container"
+    :transform="transformStr"
+    :opacity="0.2"
+  >
     <circle
       class="animated-circle animated-paused"
       fill="none"
       :stroke="$store.state.map.meta.color"
-      stroke-width="2"
+      stroke-width="0.5"
       :r="radius / 1.95"
     >
     </circle>

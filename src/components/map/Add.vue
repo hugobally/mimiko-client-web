@@ -101,9 +101,9 @@ export default {
       if (!this.knot) return
 
       try {
-        await this.$store.dispatch('map/createKnots', {
+        await this.$store.dispatch('map/createKnot', {
           sourceId: this.knot,
-          newTracks: [this.track],
+          track: this.track,
           visited: this.isVisited,
         })
         this.$router.replace({

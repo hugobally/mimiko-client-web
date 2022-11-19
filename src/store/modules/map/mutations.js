@@ -60,10 +60,8 @@ export default {
       knot.track = { ...knot.track, ...track }
     }
   },
-  KNOT_ADD_CHILDREN(state, { id, children }) {
-    for (const child of children) {
-      state.knots[id].children.push(child)
-    }
+  KNOT_ADD_CHILD(state, { id, child }) {
+    state.knots[id].children.push(child)
   },
   KNOT_REMOVE_CHILDREN(state, { id, childrenToRemove }) {
     const newChildren = state.knots[id].children.filter(

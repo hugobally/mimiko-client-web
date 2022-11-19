@@ -8,16 +8,36 @@
       xmlns="http://www.w3.org/2000/svg"
       :opacity="loaded ? 1 : 0"
     >
-      <ZoomHandler id="zoomgroup" :viewportRef="$refs.viewport" :graphRef="$refs.graph">
-        <PlayIndicator v-if="currentPlayerKnot" :key="`play-indicator-${currentPlayerKnot}`" />
+      <ZoomHandler
+        id="zoomgroup"
+        :viewportRef="$refs.viewport"
+        :graphRef="$refs.graph"
+      >
+        <PlayIndicator
+          v-if="currentPlayerKnot"
+          :key="`play-indicator-${currentPlayerKnot}`"
+        />
         <g ref="graph">
           <transition-group name="link-group" tag="g">
-            <Link v-for="(link, key) in links" :key="key" :id="key" :link="link" />
+            <Link
+              v-for="(link, key) in links"
+              :key="key"
+              :id="key"
+              :link="link"
+            />
           </transition-group>
           <HoverIndicator :key="hovered" v-if="hovered" />
-          <SelectIndicator v-if="currentSelectedKnot" :key="`select-indicator-${currentSelectedKnot}`" />
+          <SelectIndicator
+            v-if="currentSelectedKnot"
+            :key="`select-indicator-${currentSelectedKnot}`"
+          />
           <transition-group name="knot-group" tag="g">
-            <Knot v-for="(knot, key) in knots" :key="key" :id="key" :knot="knot" />
+            <Knot
+              v-for="(knot, key) in knots"
+              :key="key"
+              :id="key"
+              :knot="knot"
+            />
           </transition-group>
         </g>
       </ZoomHandler>
