@@ -3,6 +3,9 @@ const TUTORIAL_STEPS = ['select_knot', 'add_knot', 'play_knot', 'home']
 function initialGlobalUI() {
   return {
     flashQueue: [],
+    colors: {
+      playIndicator: '#3411F8',
+    },
   }
 }
 
@@ -12,7 +15,7 @@ function initialMapUI() {
     zoomLevel: 1,
     transform: { x: 0.0, y: 0.0 },
     selectedKnotId: null,
-    tutorialSteps: TUTORIAL_STEPS.filter(step => !localStorage.getItem(step)),
+    tutorialSteps: TUTORIAL_STEPS.filter((step) => !localStorage.getItem(step)),
   }
 }
 
@@ -56,7 +59,7 @@ export default {
     },
     REMOVE_TUTORIAL_STEP(state, stepToRemove) {
       state.tutorialSteps = state.tutorialSteps.filter(
-        step => step !== stepToRemove,
+        (step) => step !== stepToRemove,
       )
     },
   },

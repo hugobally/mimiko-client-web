@@ -1,33 +1,30 @@
 <template>
-  <g
-    class="play-indicator-container"
-    :transform="transformStr"
-  >
+  <g class="play-indicator-container" :transform="transformStr">
     <circle
       class="animated-circle animated-circle-1"
-      :class="{ 'hidden': paused, 'animated-playing': playing }"
+      :class="{ hidden: paused, 'animated-playing': playing }"
       fill="none"
-      stroke="#b4b2b2"
+      :stroke="$store.state.ui.colors.playIndicator"
       stroke-width="2"
       :r="radius / 1.95"
     >
     </circle>
     <circle
-        class="animated-circle animated-circle-2"
-        :class="{ 'hidden': paused, 'animated-playing': playing }"
-        fill="none"
-        stroke="#838383"
-        stroke-width="2"
-        :r="radius / 1.95"
+      class="animated-circle animated-circle-2"
+      :class="{ hidden: paused, 'animated-playing': playing }"
+      fill="none"
+      :stroke="$store.state.ui.colors.playIndicator"
+      stroke-width="2"
+      :r="radius / 1.95"
     >
     </circle>
     <circle
-        class="animated-circle animated-circle-3"
-        :class="{ 'hidden': paused, 'animated-playing': playing }"
-        fill="none"
-        :stroke="$store.state.map.meta.color"
-        stroke-width="2"
-        :r="radius / 1.95"
+      class="animated-circle animated-circle-3"
+      :class="{ hidden: paused, 'animated-playing': playing }"
+      fill="none"
+      :stroke="$store.state.ui.colors.playIndicator"
+      stroke-width="2"
+      :r="radius / 1.95"
     >
     </circle>
   </g>
@@ -67,7 +64,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .play-indicator-container {
   pointer-events: none;
 }
@@ -116,5 +112,4 @@ export default {
   animation-duration: 4s;
   animation-iteration-count: infinite;
 }
-
 </style>
