@@ -47,7 +47,12 @@ export async function autocomplete(searchString) {
   }
 }
 
-export async function recoFromTrack({ seeds, numResults = 5, blacklist = [], previewMode}) {
+export async function recoFromTrack({
+  seeds,
+  numResults = 5,
+  blacklist = [],
+  previewMode = true,
+}) {
   const params = {
     limit: Math.max(numResults, 5),
     seed_tracks: seeds.join(),

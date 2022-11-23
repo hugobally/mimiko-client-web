@@ -23,7 +23,7 @@ export default {
     },
   },
   watch: {
-    msgQueue: function() {
+    msgQueue: function () {
       this.displayMsg(this.msgQueue)
     },
   },
@@ -32,7 +32,7 @@ export default {
       if (queue.length === 0) return
 
       this.message = queue[0]
-      await new Promise(r => setTimeout(r, this.message.time || 3000))
+      await new Promise((r) => setTimeout(r, this.message.time || 3000))
       this.$store.dispatch('ui/shiftFlashQueue')
     },
   },

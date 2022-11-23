@@ -2,7 +2,7 @@ import * as gql from '@/api/graphql'
 
 // TODO Factorize DFS with other instances
 // TODO keep a store getter of knots array length
-export default async function({ commit, dispatch, state, rootState }, knotId) {
+export default async function ({ commit, dispatch, state, rootState }, knotId) {
   if (Object.keys(state.knots).length < 2 || state.knots[knotId].level === 0) {
     return
   }
@@ -12,7 +12,7 @@ export default async function({ commit, dispatch, state, rootState }, knotId) {
 
   const linkIds = Object.keys(state.links)
 
-  const parentLinkId = linkIds.find(id => state.links[id].target === knotId)
+  const parentLinkId = linkIds.find((id) => state.links[id].target === knotId)
   const parentKnotId = state.links[parentLinkId].source
 
   const dfs = [parentLinkId]
@@ -26,7 +26,9 @@ export default async function({ commit, dispatch, state, rootState }, knotId) {
 
     knotsToDelete.push(target)
 
-    for (const id of linkIds.filter(id => state.links[id].source === target)) {
+    for (const id of linkIds.filter(
+      (id) => state.links[id].source === target,
+    )) {
       dfs.push(id)
     }
   }

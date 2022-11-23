@@ -65,7 +65,7 @@ export default {
   },
   KNOT_REMOVE_CHILDREN(state, { id, childrenToRemove }) {
     const newChildren = state.knots[id].children.filter(
-      id => !childrenToRemove.includes(id),
+      (id) => !childrenToRemove.includes(id),
     )
     state.knots[id].children = newChildren
   },

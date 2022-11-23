@@ -23,7 +23,7 @@ export default {
   computed: {
     ...mapState('map', ['knots', 'focused', 'load', 'freshCreated']),
     ...mapState({
-      manualZoomQueue: state => state.ui.manualZoomQueue,
+      manualZoomQueue: (state) => state.ui.manualZoomQueue,
     }),
 
     transformStr() {
@@ -31,7 +31,7 @@ export default {
     },
   },
   watch: {
-    viewportRef: async function() {
+    viewportRef: async function () {
       if (this.viewportRef === undefined || this.d3Viewport !== null) return
 
       this.d3Viewport = d3select(this.viewportRef)
@@ -39,21 +39,21 @@ export default {
         .zoom()
         .scaleExtent([0.3, 12])
         .on('zoom', this.transformCallback)
-      this.d3Viewport.call(this.d3ZoomObj).on("dblclick.zoom", null)
+      this.d3Viewport.call(this.d3ZoomObj).on('dblclick.zoom', null)
     },
-    load: function(loadValue) {
+    load: function (loadValue) {
       if (loadValue === 100) {
         this.fit(0)
       }
     },
-    focused: function(newFocus) {
+    focused: function (newFocus) {
       if (newFocus === 'ALL') {
         this.fit(500)
       } else {
         this.translateZoom(1000)
       }
     },
-    manualZoomQueue: function(queue) {
+    manualZoomQueue: function (queue) {
       if (queue.length === 0) return
 
       const diff = queue[0]
@@ -64,7 +64,10 @@ export default {
   methods: {
     async transformCallback() {
       this.transform = d3event.transform
-      this.$store.commit('ui/SET_TRANSFORM', { x: this.transform.x, y: this.transform.y })
+      this.$store.commit('ui/SET_TRANSFORM', {
+        x: this.transform.x,
+        y: this.transform.y,
+      })
       this.$store.commit('ui/SET_ZOOM_LEVEL', this.transform.k)
       const hovered = this.$store.state.map.hovered
       this.$store.commit('map/SET_HOVERED', null)

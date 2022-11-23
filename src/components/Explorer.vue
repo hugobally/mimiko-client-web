@@ -49,7 +49,7 @@ export default {
     filterMaps() {
       if (this.searchString === '') this.filteredMaps = null
 
-      this.filteredMaps = this.publicMaps.filter(map => {
+      this.filteredMaps = this.publicMaps.filter((map) => {
         return mapMetadataIncludes(this.searchString.toLowerCase(), [
           map.title,
           map.author && map.author.username,
@@ -81,7 +81,7 @@ export default {
     },
   },
   watch: {
-    searchString: function() {
+    searchString: function () {
       if (this.debounce) {
         clearTimeout(this.debounce)
       }

@@ -5,9 +5,7 @@
         <Creator />
       </div>
       <div v-if="userMaps && userMaps.length !== 0">
-        <h1 class="header noselect">
-          Maps
-        </h1>
+        <h1 class="header noselect">Maps</h1>
         <RouterLink to="#new" class="button">create a new map</RouterLink>
         <MapList class="map-list" :readOnly="false" :maps="userMaps" />
       </div>

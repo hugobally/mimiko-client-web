@@ -1,11 +1,15 @@
 <template>
-  <div class="panel-centerer" @click="closePanelOutsideClick" ref="panelCenterer">
+  <div
+    class="panel-centerer"
+    @click="closePanelOutsideClick"
+    ref="panelCenterer"
+  >
     <div class="panel-container">
       <img
-          @click="closePanel"
-          class="close-icon"
-          src="@/assets/svg/close-icon.svg"
-          alt="close-icon"
+        @click="closePanel"
+        class="close-icon"
+        src="@/assets/svg/close-icon.svg"
+        alt="close-icon"
       />
       <div class="panel-header">
         <!--        <h1 class="panel-title noselect">{{ titleStr }}</h1>-->
@@ -25,7 +29,7 @@ export default {
     }
   },
   mounted() {
-    const onKeyUp = e => {
+    const onKeyUp = (e) => {
       this.kbHandler(e)
     }
     window.addEventListener('keyup', onKeyUp)
@@ -55,7 +59,7 @@ export default {
       if (e.target !== this.$refs.panelCenterer) return
 
       this.closePanel()
-    }
+    },
   },
 }
 </script>

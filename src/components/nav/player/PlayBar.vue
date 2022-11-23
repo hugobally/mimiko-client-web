@@ -37,8 +37,9 @@ export default {
       const posSec = Math.floor((this.localPos % 60000) / 1000)
       const durMin = Math.floor(this.duration / 60000)
       const durSec = Math.floor((this.duration % 60000) / 1000)
-      return `${posMin}:${(posSec < 10 ? '0' : '') +
-        posSec} / ${durMin}:${(durSec < 10 ? '0' : '') + durSec}`
+      return `${posMin}:${(posSec < 10 ? '0' : '') + posSec} / ${durMin}:${
+        (durSec < 10 ? '0' : '') + durSec
+      }`
     },
     localPos() {
       return this.position + this.localOffset
@@ -79,7 +80,7 @@ export default {
     },
   },
   watch: {
-    status: function(val) {
+    status: function (val) {
       if (val !== 'PLAYING') {
         clearTimeout(this.posLoopId)
         this.localOffset = 0
@@ -87,7 +88,7 @@ export default {
         this.posLoop()
       }
     },
-    position: function() {
+    position: function () {
       // this.lastRemotePos = val
       this.localOffset = 0
     },

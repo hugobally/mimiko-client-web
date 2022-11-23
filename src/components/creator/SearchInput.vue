@@ -56,7 +56,7 @@ export default {
   },
   // TODO Click outside of autocomplete results box removes the box
   mounted() {
-    this.$el.addEventListener('keyup', e => {
+    this.$el.addEventListener('keyup', (e) => {
       if (e.code !== 'Enter') this.autocomplete()
       this.refreshed = true
     })

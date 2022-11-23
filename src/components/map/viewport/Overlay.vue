@@ -6,7 +6,7 @@
   >
     <div :style="{ ...topEdge }" v-if="tutorialKnot">
       <div class="top-edge-container">
-<!--        <div :style="{ ...reactiveSize }" class="top-edge-backdrop" />-->
+        <!--        <div :style="{ ...reactiveSize }" class="top-edge-backdrop" />-->
         <!--        <input v-model="inputTrackId" />-->
         <!--        <button @click="updateTrackId">update</button>-->
         <span class="select-knot-tutorial tutorial-bubble">
@@ -21,7 +21,7 @@
       :class="{ hidden: !hoveredKnot }"
     >
       <div class="bottom-edge-container">
-<!--        <div :style="{ ...reactiveSize }" class="bottom-edge-backdrop" />-->
+        <!--        <div :style="{ ...reactiveSize }" class="bottom-edge-backdrop" />-->
         <a
           class="track-title-and-link shadow entrance-animation"
           :href="moreInfoLink"
@@ -51,12 +51,12 @@
             class="play-button-img shadow entrance-animation"
           />
         </button>
-<!--        <div :style="{ ...reactiveSize }" class="left-edge-backdrop" />-->
+        <!--        <div :style="{ ...reactiveSize }" class="left-edge-backdrop" />-->
       </div>
     </div>
     <div :style="{ ...rightEdge }" :class="{ hidden: !hoveredKnot }">
       <div class="right-edge-container">
-<!--        <div :style="{ ...reactiveSize }" class="right-edge-backdrop" />-->
+        <!--        <div :style="{ ...reactiveSize }" class="right-edge-backdrop" />-->
         <button class="add-button" @click="add">
           <img
             :style="{ ...reactiveSize }"
@@ -139,13 +139,13 @@ export default {
   },
   watch: {
     // TODO DRY
-    knot: function() {
+    knot: function () {
       this.setAnchorPositions()
     },
-    transform: function() {
+    transform: function () {
       this.setAnchorPositions()
     },
-    zoomLevel: function() {
+    zoomLevel: function () {
       setTimeout(() => this.setAnchorPositions(), 50)
     },
   },
@@ -233,7 +233,7 @@ export default {
 .play-this-button,
 .add-button {
   transform: translate(0, -50%);
-  background-color: rgba(0, 0 ,0, 0);
+  background-color: rgba(0, 0, 0, 0);
   transition: all 100ms ease-in-out;
 }
 
@@ -320,7 +320,7 @@ export default {
 }
 
 .entrance-animation {
-  animation: entrance-animation 0.2s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+  animation: entrance-animation 0.2s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 /* ----------------------------------------------
@@ -349,5 +349,4 @@ export default {
     opacity: 1;
   }
 }
-
 </style>

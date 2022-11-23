@@ -4,10 +4,10 @@
       <div class="nav-container">
         <Menu />
         <Player v-if="logged" />
-<!--        <div class="filler" v-else></div>-->
-<!--        <User />-->
-        </div>
+        <!--        <div class="filler" v-else></div>-->
+        <!--        <User />-->
       </div>
+    </div>
   </footer>
 </template>
 

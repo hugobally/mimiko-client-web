@@ -1,6 +1,9 @@
 <template>
   <div class="map-list-item-container noselect">
-    <div class="map-navigate-group" @click="onItemClick ? onItemClick(map) : navigateToMap()">
+    <div
+      class="map-navigate-group"
+      @click="onItemClick ? onItemClick(map) : navigateToMap()"
+    >
       <img
         class="map-flagship-cover"
         :src="map.flagship && map.flagship.imgURL"

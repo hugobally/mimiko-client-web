@@ -72,7 +72,7 @@ export default {
         commit('MAP_SET_LOAD', 1)
         commit(
           'SET_ROOT_KNOT_ID',
-          rawMap.knots.find(knot => knot.level === 0).id,
+          rawMap.knots.find((knot) => knot.level === 0).id,
         )
 
         dispatch('processMap', rawMap)
@@ -124,7 +124,7 @@ export default {
 
       async focus({ commit }, target) {
         commit('SET_FOCUSED', null)
-        await new Promise(r => setTimeout(r, 100))
+        await new Promise((r) => setTimeout(r, 100))
         commit('SET_FOCUSED', target)
       },
 

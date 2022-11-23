@@ -57,7 +57,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 @keyframes circle-scale-animation {
   0% {
     transform: scale(0.9);

@@ -34,7 +34,7 @@ export default {
     KNOTS_DELETE(state, ids) {
       if (state.simulation) state.simulation.stop()
 
-      state.knots = state.knots.filter(knot => !ids.includes(knot.id))
+      state.knots = state.knots.filter((knot) => !ids.includes(knot.id))
     },
 
     SET_SIM(state, sim) {
@@ -73,7 +73,7 @@ export default {
         .force('charge', d3.forceCollide().radius(25))
         .force(
           'r',
-          d3.forceRadial(function(d) {
+          d3.forceRadial(function (d) {
             return d.level * 100
           }),
         )

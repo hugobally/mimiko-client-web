@@ -1,33 +1,35 @@
 <template>
   <div class="welcome-text-container">
     <img
-        width="100"
-        height="100"
-        src="@/assets/svg/favicon.svg"
-        alt="mimiko-logo"
-        class="mimiko-logo"
+      width="100"
+      height="100"
+      src="@/assets/svg/favicon.svg"
+      alt="mimiko-logo"
+      class="mimiko-logo"
     />
     <div>
       <div class="welcome-text">
-        <h1 class="welcome-text-title">
-          Welcome to MIMIKO !
-        </h1>
+        <h1 class="welcome-text-title">Welcome to MIMIKO !</h1>
         <p class="welcome-text-content">
-          Discover new songs by starting from a song you like, and create a map of new music !
+          Discover new songs by starting from a song you like, and create a map
+          of new music !
         </p>
         <p class="welcome-text-content">
-          For any issues or question, you can find <a href="https://github.com/hugobally/mimiko/issues">the project on
-          github</a> or <a href="mailto:bally.hugo@gmail.com">send me an email</a>.
+          For any issues or question, you can find
+          <a href="https://github.com/hugobally/mimiko/issues"
+            >the project on github</a
+          >
+          or <a href="mailto:bally.hugo@gmail.com">send me an email</a>.
         </p>
       </div>
-      <Explorer/>
+      <Explorer />
     </div>
   </div>
 </template>
 
 <script>
 // import SearchTrack from "@/components/SearchTrack";
-import Explorer from "@/components/Explorer";
+import Explorer from '@/components/Explorer'
 
 export default {
   components: {
@@ -48,7 +50,8 @@ export default {
   margin-bottom: 40px;
 }
 
-.welcome-text, .search-track-container {
+.welcome-text,
+.search-track-container {
   margin-left: 30px;
 }
 

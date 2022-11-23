@@ -21,29 +21,30 @@
       <!--          alt="no-liked-icon"-->
       <!--        />-->
       <!--      </div>-->
-<!--      <div-->
-<!--        class="add-button-wrapper"-->
-<!--        :class="{-->
-<!--          'add-button-tutorial':-->
-<!--            $route.path.includes('map') &&-->
-<!--            tutorialSteps.includes('add_knot') &&-->
-<!--            !tutorialSteps.includes('select_knot') &&-->
-<!--            selectedKnotId,-->
-<!--        }"-->
-<!--        @click="add"-->
-<!--      >-->
-<!--        <img-->
-<!--          class="add-button"-->
-<!--          src="@/assets/svg/add-icon.svg"-->
-<!--          alt="add-track-icon"-->
-<!--        />-->
-<!--      </div>-->
+      <!--      <div-->
+      <!--        class="add-button-wrapper"-->
+      <!--        :class="{-->
+      <!--          'add-button-tutorial':-->
+      <!--            $route.path.includes('map') &&-->
+      <!--            tutorialSteps.includes('add_knot') &&-->
+      <!--            !tutorialSteps.includes('select_knot') &&-->
+      <!--            selectedKnotId,-->
+      <!--        }"-->
+      <!--        @click="add"-->
+      <!--      >-->
+      <!--        <img-->
+      <!--          class="add-button"-->
+      <!--          src="@/assets/svg/add-icon.svg"-->
+      <!--          alt="add-track-icon"-->
+      <!--        />-->
+      <!--      </div>-->
       <div class="button-wrapper" @click="dislike">
-        <img
-          class="dislike-button"
-          src="@/assets/svg/dislike.svg"
-          alt="remove-track-icon"
-        />
+        <DislikeIcon />
+<!--        <img-->
+<!--          class="dislike-button"-->
+<!--          src="@/assets/svg/dislike.svg"-->
+<!--          alt="remove-track-icon"-->
+<!--        />-->
       </div>
     </div>
     <div class="playback-group center">
@@ -69,6 +70,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import DislikeIcon from '@/assets/svg/dislike.svg'
 
 export default {
   components: {},
@@ -93,7 +95,7 @@ export default {
       // }
       // }
 
-      window.addEventListener('keyup', e => {
+      window.addEventListener('keyup', (e) => {
         if (e.code === 'Space' && this.$route.hash === '')
           this.playPauseToggle()
         if (
@@ -120,7 +122,7 @@ export default {
         'ended',
         async () => {
           if (this.autoplay) {
-            await new Promise(r => setTimeout(r, 1000))
+            await new Promise((r) => setTimeout(r, 1000))
             await this.$store.dispatch('player/bufferPlayNext')
           }
         },
@@ -278,7 +280,7 @@ export default {
           sourceId: this.selectedKnotId,
           visited: false,
         })
-        newKnots.forEach(knot =>
+        newKnots.forEach((knot) =>
           this.$store.commit('player/PLAYQUEUE_SHIFT', {
             track: knot.track,
             knot: knot.id,
@@ -313,7 +315,7 @@ export default {
     },
   },
   watch: {
-    track: function() {
+    track: function () {
       clearTimeout(this.debounceLike.callbackId)
       this.debounceLike.counter = 0
 
@@ -325,7 +327,7 @@ export default {
         })
       }
     },
-    status: function(newStatus) {
+    status: function (newStatus) {
       if (newStatus === 'PLAYING') {
         this.audioEl.play()
       } else {

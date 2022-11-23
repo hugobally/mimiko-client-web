@@ -12,7 +12,14 @@
             <path
               id="path2492"
               d="M 25.324405,254.66667 H 75.21726 L 50.081843,234.5135 Z"
-              style="fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+              style="
+                fill: #000000;
+                stroke: none;
+                stroke-width: 0.26458332px;
+                stroke-linecap: butt;
+                stroke-linejoin: miter;
+                stroke-opacity: 1;
+              "
             />
           </g>
         </svg>

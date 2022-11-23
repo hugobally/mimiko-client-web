@@ -1,10 +1,14 @@
 <template>
   <div>
-    <a class="login-button link" :href="spotifyLoginUrl" @click="storeCurrentUrl">
+    <a
+      class="login-button link"
+      :href="spotifyLoginUrl"
+      @click="storeCurrentUrl"
+    >
       <img
-          class="spotify-logo"
-          src="@/assets/svg/spotify-logo.svg"
-          alt="spotify-logo"
+        class="spotify-logo"
+        src="@/assets/svg/spotify-logo.svg"
+        alt="spotify-logo"
       />
       <slot></slot>
     </a>
@@ -15,13 +19,14 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
   data() {
     return {
       spotifyLoginUrl: process.env.VUE_APP_BACKEND_URL + '/login_spotify',
-      sampleSessionLoginUrl: process.env.VUE_APP_BACKEND_URL + '/login_sample_session',
+      sampleSessionLoginUrl:
+        process.env.VUE_APP_BACKEND_URL + '/login_sample_session',
     }
   },
   methods: {
@@ -29,19 +34,23 @@ export default {
       localStorage.setItem('path_before_login', this.$route.path)
     },
     async loginSampleSession() {
-          // try {
-            await axios.post(process.env.VUE_APP_BACKEND_URL + '/login_sample_session', crypto.randomUUID(), {
-              withCredentials: true,
-            })
-            await this.$store.dispatch('auth/whoami')
-            location.reload()
-          // } catch (error) {
-          //   await this.$store.dispatch('ui/pushFlashQueue', {
-          //     content: 'Login failed',
-          //     type: 'error',
-          //   })
-          // }
-    }
+      // try {
+      await axios.post(
+        process.env.VUE_APP_BACKEND_URL + '/login_sample_session',
+        crypto.randomUUID(),
+        {
+          withCredentials: true,
+        },
+      )
+      await this.$store.dispatch('auth/whoami')
+      location.reload()
+      // } catch (error) {
+      //   await this.$store.dispatch('ui/pushFlashQueue', {
+      //     content: 'Login failed',
+      //     type: 'error',
+      //   })
+      // }
+    },
   },
 }
 </script>
@@ -52,7 +61,7 @@ export default {
   align-items: center;
   justify-content: center;
 
-background-color: $bg-primary;
+  background-color: $bg-primary;
   color: $text-primary;
   border: solid 1px black;
 

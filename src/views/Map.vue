@@ -51,7 +51,7 @@ export default {
       localStorage.setItem('last_visited', this.id)
 
       // dirty sleep in order to let the force simulation tick, so that the zoom level is correct
-      await new Promise(r => setTimeout(r, 200))
+      await new Promise((r) => setTimeout(r, 200))
 
       this.$store.commit('map/MAP_SET_LOAD', 100)
     } catch (error) {
@@ -75,7 +75,7 @@ export default {
     },
   },
   watch: {
-    query: function() {
+    query: function () {
       this.$store.commit('map/SET_EDIT_MODE', this.query.edit ? true : false)
     },
   },

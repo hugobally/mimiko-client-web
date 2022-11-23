@@ -1,0 +1,16 @@
+{
+  "name": "Remote Schema",
+  "schemaPath": "remote-schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Remote SWAPI GraphQL Endpoint": {
+        "url": "https://localhost:8081/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL",
+          "Content-Type": "application/json"
+        },
+        "introspect": true
+      }
+    }
+  }
+}
